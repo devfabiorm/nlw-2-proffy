@@ -1,34 +1,91 @@
-import React from 'react';
+import React, { FormEvent, useState } from 'react';
+import Input from '../../components/Input';
 
 import PageHeader from '../../components/PageHeader';
-import TeacherItem from '../../components/TeacherItem';
+import Select from '../../components/Select';
+import TeacherItem, { Teacher } from '../../components/TeacherItem';
+import api from '../../services/api';
+
 
 import './styles.css';
 
+
 function TeacherList() {
+    const [teachers, setTeachers] = useState([]);
+
+    const [subject, setSubject] = useState('');
+    const [weekDay, setWeekDay] = useState('');
+    const [time, setTime] = useState('');
+
+    async function searchTeacher(e: FormEvent) {
+        e.preventDefault();
+
+        const response = await api.get('classes', {
+            params: {
+                subject,
+                week_day: weekDay,
+                time
+            }
+        });
+
+        setTeachers(response.data);
+    }
+
     return (
         <div id="page-teacher-list" className="container">
             <PageHeader title="Estes são os proffys disponíveis.">
-                <form id="search-teachers">
-                    <div className="input-block">
-                        <label htmlFor="subject">Matéria</label>
-                        <input type="text" className="subject" />
-                    </div>
+                <form id="search-teachers" onSubmit={searchTeacher}>
+                    <Select
+                        name="subject"
+                        label="Matéria"
+                        value={subject}
+                        onChange={e => setSubject(e.target.value)}
+                        options={[
+                            { value: 'Artes', label: 'Artes' },
+                            { value: 'Biologia', label: 'Biologia' },
+                            { value: 'Ciências', label: 'Ciências' },
+                            { value: 'Educação física', label: 'Educação física' },
+                            { value: 'Física', label: 'Física' },
+                            { value: 'Geografia', label: 'Geografia' },
+                            { value: 'História', label: 'História' },
+                            { value: 'Matemática', label: 'Matemática' },
+                            { value: 'Português', label: 'Português' },
+                            { value: 'Quimica', label: 'Quimica' },
+                        ]}
+                    />
 
-                    <div className="input-block">
-                        <label htmlFor="week_day">Dia da semana</label>
-                        <input type="text" className="week_day" />
-                    </div>
+                    <Select
+                        name="week_day"
+                        label="Dia da semana"
+                        value={weekDay}
+                        onChange={e => setWeekDay(e.target.value)}
+                        options={[
+                            { value: '0', label: 'Domingo' },
+                            { value: '1', label: 'Segunda-feira' },
+                            { value: '2', label: 'Terça-feira' },
+                            { value: '3', label: 'Quarta-feira' },
+                            { value: '4', label: 'Quinta-feira' },
+                            { value: '5', label: 'Sexta-feira' },
+                            { value: '6', label: 'Sábado' },
+                        ]}
+                    />
 
-                    <div className="input-block">
-                        <label htmlFor="time">Hora</label>
-                        <input type="text" className="time" />
-                    </div>
+                    <Input
+                        type="time"
+                        name="time"
+                        value={time}
+                        onChange={e => setTime(e.target.value)}
+                        label="Hora"
+                    />
+
+                    <button type="submit">Buscar</button>
                 </form>
             </PageHeader>
 
             <main>
-                <TeacherItem />
+                {teachers.map((teacher: Teacher) => {
+                    return <TeacherItem key={teacher.id} teacher={teacher}/>
+                })}
             </main>
         </div>
     );
