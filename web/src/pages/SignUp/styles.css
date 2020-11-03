@@ -1,0 +1,184 @@
+#signup-page {
+    width: 100vw;
+    height: 100vh;
+
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 47vh 53vh;
+}
+
+#white-side {
+    background: var(--color-background);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#white-side h1 {
+    font: 600 3.6rem Poppins;
+    line-height: 3.5rem;
+    color: #32264D;
+}
+
+#white-side p {
+    margin-top: 3rem;
+}
+
+#white-side-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#white-side-content div.float-label {
+    width: 100%;
+    position: relative;
+}
+
+#white-side-content div.float-label:focus-within::after {
+    height: calc(100% - 2rem);
+    left: 0;
+    top: 1rem;
+    bottom: 1rem;
+    background: var(--color-primary-light);
+    content: '';
+    width: 2px;
+    position: absolute;
+}
+
+#white-side-content div.float-label input {
+    width: 100%;
+    height: 6rem;
+    background: var(--color-input-background);
+    border: 1px solid var(--color-line-in-white);
+    outline: none;
+    padding: 0 1.6rem;
+    font: 1.5rem Poppins;
+    /* transition: all .3s ease-out; */
+}
+
+#white-side-content div.float-label input::placeholder {
+    color: transparent;
+}
+
+#white-side-content div.float-label label {
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-top: 1.7rem;
+    margin-left: 1.7rem;
+    transition: all .3s ease-out;
+}
+
+#white-side-content div.float-label input:focus + label,
+#white-side-content div.float-label input:not(:placeholder-shown) + label {
+    font-size: 1.2rem;
+    margin-top: 0.1rem;
+}
+
+#white-side-content div.float-label > input#name {
+    border-radius: 0.8rem 0.8rem 0 0;
+}
+
+#white-side-content div.float-label > input#password {
+    border-radius: 0 0 0.8rem 0.8rem;
+    border-top: 0;
+}
+
+/* Faz com que o ícone para revelar o passowrd não seja exibido */
+#white-side-content div.float-label > input[type=password]::-ms-reveal {
+    display: none;
+}
+
+#white-side-content div.float-label + div.float-label > input {
+    border-top: 0;
+}
+
+#white-side-content div.float-label button.customIcon {
+    background: none;
+    outline: none;
+    border: none;
+
+    position: absolute;
+    top: 30%;
+    right: 5%;
+}
+
+#purple-side {
+    color: var(--color-text-in-primary);
+    background: var(--color-primary);
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 2rem;
+}
+
+#purple-side-content {
+    background-image: url('../../assets/images/Background.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#purple-side-content img {
+    height: 10rem;
+}
+
+#purple-side-content h2 {
+    font-weight: 500;
+    font-size: 2.4rem;
+    line-height: 4rem;
+    margin-top: 0.8rem;
+}
+
+@media(min-width: 900px) {
+    #signup-page {
+        width: 100%;
+    
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 100vh;
+    }
+
+    #white-side-content,
+    #purple-side-content {
+        width: 100%;
+        padding: 10%;
+    }
+
+    #white-side h1 {
+        font: 600 4rem Poppins;
+        line-height: 3.5rem;
+        color: #32264D;
+    }
+    
+    #white-side p {
+        max-width: 28.6rem;
+        margin-top: 3rem;
+        font-size: 2rem;
+    }
+
+    #white-side-content .title {
+        display: flex;
+        flex-direction: column;
+        align-self: flex-start;
+        margin-bottom: 5.5rem;
+    }
+
+    #purple-side-content h2 {
+        max-width: 30.6rem;
+    }
+
+}
