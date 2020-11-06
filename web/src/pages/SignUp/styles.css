@@ -16,7 +16,14 @@
     align-items: center;
 }
 
-#white-side h1 {
+#white-side-content div.title {
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+    margin-bottom: 1.5rem;
+}
+
+#white-side div.title h1 {
     font: 600 3.6rem Poppins;
     line-height: 3.5rem;
     color: #32264D;
@@ -143,7 +150,7 @@
     margin-top: 0.8rem;
 }
 
-@media(min-width: 900px) {
+@media(min-width: 1000px) {
     #signup-page {
         width: 100%;
     
@@ -155,7 +162,7 @@
     #white-side-content,
     #purple-side-content {
         width: 100%;
-        padding: 10%;
+        padding: 0 2rem 0 2rem;
     }
 
     #white-side h1 {
@@ -168,13 +175,6 @@
         max-width: 28.6rem;
         margin-top: 3rem;
         font-size: 2rem;
-    }
-
-    #white-side-content .title {
-        display: flex;
-        flex-direction: column;
-        align-self: flex-start;
-        margin-bottom: 5.5rem;
     }
 
     #purple-side-content h2 {

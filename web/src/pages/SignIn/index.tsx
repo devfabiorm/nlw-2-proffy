@@ -1,18 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, FormEvent, useContext } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
+import AuthContext from '../../contexts/auth';
 import Button from '../../components/Button';
 
 import logoImg from '../../assets/images/logo.svg';
 import purpleHeartIcon from '../../assets/images/icons/purple-heart.svg';
 
 import './styles.css';
+import { Redirect } from 'react-router-dom';
 
 const SignIn: React.FC = () => {
+    const { handleAuthentication, signed } = useContext(AuthContext);
     const [isVisiblePassword, setIsVisiblePassword] = useState(false);
+    
+    function handleSignIn(event: FormEvent) {
+        event.preventDefault();
+
+        handleAuthentication();
+    }
 
     function togglePassword() {
         setIsVisiblePassword(!isVisiblePassword);
+    }
+
+    if(signed) {
+        return <Redirect to="/landing" />
     }
 
     return(
@@ -26,7 +39,7 @@ const SignIn: React.FC = () => {
                 </div>
             </div>
             <div id="white-side">
-                <form id="white-side-content" className="container">
+                <form id="white-side-content" className="container" onSubmit={handleSignIn}>
                     <h1>Fazer login</h1>
 
                     <div className="float-label">
@@ -53,7 +66,7 @@ const SignIn: React.FC = () => {
                         <a href="/#">Esqueci minha senha</a>
                     </div>
 
-                    <Button>Entrar</Button>
+                    <Button type="submit">Entrar</Button>
 
                     <div className="footer">
                         <span className="account">

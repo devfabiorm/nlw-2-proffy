@@ -1,13 +1,18 @@
 import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
+import { AuthProvider } from './contexts/auth';
 
-//import Routes from './routes';
-import SignIn from './pages/SignIn';
+import Routes from './routes';
 
 import './assets/styles/global.css';
 
 function App() {
   return (
-   <SignIn />
+    <BrowserRouter>
+      <AuthProvider>
+        <Routes />
+      </AuthProvider>
+    </BrowserRouter>
   );
 }
 
