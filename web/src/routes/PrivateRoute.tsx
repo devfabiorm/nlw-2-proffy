@@ -10,8 +10,6 @@ const PrivateRoute = ({ component:Component , ...rest }: IPrivateRoute) => {
   const {signed} = useContext(AuthContext);
   const location = useLocation();
 
-  console.log(signed);
-
   return (
     <Route
       {...rest}

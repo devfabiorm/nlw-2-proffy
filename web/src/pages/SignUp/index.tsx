@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa'
+import { Link } from 'react-router-dom';
 
 import Button from '../../components/Button';
 
 import logoImg from '../../assets/images/logo.svg';
+import backIcon from '../../assets/images/icons/back.svg';
 
 import './styles.css';
 
@@ -18,6 +20,10 @@ const SignUp: React.FC = () => {
         <div id="signup-page">
             <div id="white-side">
                 <form id="white-side-content" className="container">
+                    <Link className="backButton" to="/sign-in">
+                        <img src={backIcon} alt="Voltar"/>
+                    </Link>
+
                     <div className="title">
                         <h1>Cadastro</h1>
                         <p>Preecha os dados abaixo para começar.</p>
@@ -49,7 +55,7 @@ const SignUp: React.FC = () => {
                         </button>
                     </div>
 
-                    <Button>Concluir cadastro</Button>
+                    <Button type="submit">Concluir cadastro</Button>
                 </form>
             </div>
             <div id="purple-side">

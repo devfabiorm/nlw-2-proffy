@@ -8,7 +8,7 @@ import logoImg from '../../assets/images/logo.svg';
 import purpleHeartIcon from '../../assets/images/icons/purple-heart.svg';
 
 import './styles.css';
-import { Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 const SignIn: React.FC = () => {
     const { handleAuthentication, signed } = useContext(AuthContext);
@@ -71,7 +71,7 @@ const SignIn: React.FC = () => {
                     <div className="footer">
                         <span className="account">
                             Não tem conta?
-                            <a href="/#">Cadastre-se</a>
+                            <Link to="/sign-up">Cadastre-se</Link>
                         </span>
 
                         <span>

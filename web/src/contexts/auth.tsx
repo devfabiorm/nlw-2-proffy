@@ -22,7 +22,6 @@ export const AuthProvider: React.FC = ({ children }) => {
 
     if(storagedUser && storagedToken) {
       setUser(JSON.parse(storagedUser));
-      console.log('Peguei')
     }
   }, []);
 
